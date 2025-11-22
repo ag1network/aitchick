@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AiTchick – Local Tech Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AiTchick provides friendly, local tech support for home users and small businesses in Broward County – Wi-Fi, laptops, printers, and networks." />
+
+  <!-- Google Font: Quicksand -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red: #D90000;
+      --blue: #1E90FF;
+      --gray: #2E2E2E;
+      --light-gray: #f4f5f7;
+      --border-gray: #e0e0e0;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--gray);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-gray);
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-text {
+      font-size: 1.6rem;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .logo-A { color: var(--red); }
+    .logo-iT { color: var(--blue); font-weight: 700; }
+    .logo-chick { color: var(--gray); font-weight: 500; }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-primary:hover {
+      background: #0070d4;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border-gray);
+      background: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 2.5rem 0 2rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.3rem;
+      margin-bottom: 0.75rem;
+      color: var(--gray);
+      line-height: 1.3;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      color: #4b4b4b;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .hero-card {
+      background: var(--light-gray);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-gray);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card-item {
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Sections */
+    section { padding: 2.25rem 0 0; }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    section p.section-intro {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      max-width: 650px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      border-radius: 14px;
+      border: 1px solid var(--border-gray);
+      padding: 1.25rem;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-gray);
+      background: #fafbfc;
+    }
+
+    /* Contact */
+    .contact-box {
+      border-radius: 14px;
+      border: 1px solid var(--border-gray);
+      padding: 1.4rem;
+      background: #fdfdfd;
+      margin-top: 0.75rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-gray);
+      margin-top: 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.25rem;
+      font-size: 0.85rem;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-card { order: -1; }
+      .nav-links { display: none; }
+      .logo-text { font-size: 1.4rem; }
+      main { padding: 1.25rem 1rem 2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="logo-text">
+        <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#why">
+          Why <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>
+        </a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+
+        <h1>
+          Local tech help that actually makes sense with
+          <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>.
+        </h1>
+
+        <p>
+          Friendly, professional tech support for home users and small businesses in Broward County.
+          Wi-Fi issues, slow laptops, printers, email, and network problems — handled without the jargon.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="sms:7543008020">Text: 754-300-8020</a>
+          <a class="btn-outline" href="mailto:tech@aitchick.com">Email: tech@aitchick.com</a>
+        </div>
+
+        <div class="hero-meta">
+          Evenings & weekends available • Remote or on-site support • Simple, fair pricing
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-title">Common issues I fix</div>
+        <div class="hero-card-item"><span>Wi-Fi drops, weak signal</span><span>✔</span></div>
+        <div class="hero-card-item"><span>Slow or freezing laptop</span><span>✔</span></div>
+        <div class="hero-card-item"><span>Printer won’t print</span><span>✔</span></div>
+        <div class="hero-card-item"><span>Email / Outlook problems</span><span>✔</span></div>
+        <div class="hero-card-item"><span>New device setup</span><span>✔</span></div>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2>Services</h2>
+      <p class="section-intro">
+        Whether you’re working from home or running a small business,
+        <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>
+        helps keep your tech fast, stable, and stress-free.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Wi-Fi & Network Fixes</h3>
+          <p>Fix slow or unreliable Wi-Fi and dropped connections. Help with routers, modems, mesh systems, and basic cabling.</p>
+          <div class="pill-list">
+            <span class="pill">Wi-Fi troubleshooting</span>
+            <span class="pill">Dead spots</span>
+            <span class="pill">Router setup</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Laptop & Desktop Support</h3>
+          <p>Cleanup, updates, and troubleshooting for Windows laptops and desktops.</p>
+          <div class="pill-list">
+            <span class="pill">Slow performance</span>
+            <span class="pill">Software issues</span>
+            <span class="pill">Tune-ups</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Printers & Peripherals</h3>
+          <p>Printers that won’t connect, error out, or refuse to print — fixed and configured properly.</p>
+          <div class="pill-list">
+            <span class="pill">Home & office printers</span>
+            <span class="pill">Driver issues</span>
+            <span class="pill">Network printers</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Email & Account Help</h3>
+          <p>Outlook, Gmail, Microsoft 365 sign-ins, security basics, and common account headaches.</p>
+          <div class="pill-list">
+            <span class="pill">Outlook</span>
+            <span class="pill">Microsoft 365</span>
+            <span class="pill">Basic security</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why">
+      <h2>
+        Why <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>?
+      </h2>
+
+      <p class="section-intro">
+        You don’t need an expensive “IT company” — you just need someone who understands tech and explains it normally.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Plain-language support</h3>
+          <p>No confusing jargon — just clear explanations and real fixes.</p>
+        </article>
+
+        <article class="card">
+          <h3>Local & flexible</h3>
+          <p>Based in Broward County with evening and weekend availability.</p>
+        </article>
+
+        <article class="card">
+          <h3>Home & small business focused</h3>
+          <p>Perfect for home offices and small teams needing reliable help.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="section-intro">Send a quick message with your issue and location — you'll get a fast reply.</p>
+
+      <div class="contact-box">
+        <p>
+          <strong>Best ways to reach
+            <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>:
+          </strong>
+        </p>
+
+        <div class="contact-row">
+          <div class="contact-item">
+            <span class="label">Text:</span>
+            <a href="sms:7543008020">754-300-8020</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">Email:</span>
+            <a href="mailto:tech@aitchick.com">tech@aitchick.com</a>
+          </div>
+        </div>
+
+        <p style="margin-top:0.9rem;font-size:0.9rem;color:#555;">
+          In your message include your location, device, and whether you prefer remote or on-site support.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span>
+        <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>. All rights reserved.
+      </span>
+      <span>Broward County, FL • Local tech support</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
