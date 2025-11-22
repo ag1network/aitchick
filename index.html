@@ -52,6 +52,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 0.75rem;
     }
 
     .logo-text {
@@ -69,6 +70,8 @@
       display: flex;
       gap: 1.25rem;
       font-size: 0.95rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links a {
@@ -146,6 +149,7 @@
       font-size: 1rem;
       color: #4b4b4b;
       margin-bottom: 1.5rem;
+      max-width: 40rem;
     }
 
     .hero-actions {
@@ -183,7 +187,9 @@
     }
 
     /* Sections */
-    section { padding: 2.25rem 0 0; }
+    section {
+      padding: 2.25rem 0 0;
+    }
 
     section h2 {
       font-size: 1.6rem;
@@ -257,13 +263,84 @@
       gap: 0.5rem;
     }
 
+    /* Tablet / small laptop */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
     /* Mobile */
-    @media (max-width: 800px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-card { order: -1; }
-      .nav-links { display: none; }
-      .logo-text { font-size: 1.4rem; }
-      main { padding: 1.25rem 1rem 2rem; }
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        font-size: 0.9rem;
+        gap: 0.9rem;
+      }
+
+      main {
+        padding: 1.25rem 1rem 2rem;
+      }
+
+      section {
+        padding-top: 1.75rem;
+      }
+
+      .hero {
+        padding: 1.75rem 0 1.5rem;
+        gap: 1.5rem;
+      }
+
+      .hero-text h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero-text p {
+        font-size: 0.95rem;
+      }
+
+      .hero-card {
+        margin-top: 0.5rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* Very small phones */
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 1.35rem;
+      }
+
+      .hero-text h1 {
+        font-size: 1.7rem;
+      }
+
+      .cards {
+        gap: 1rem;
+      }
+
+      .card {
+        padding: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -290,7 +367,6 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-text">
-
         <h1>
           Local tech help that actually makes sense with
           <span class="logo-A">A</span><span class="logo-iT">iT</span><span class="logo-chick">chick</span>.
