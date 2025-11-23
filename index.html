@@ -113,6 +113,7 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
+    /* Header Pay button (desktop baseline) */
     .nav-pay {
       font-size: 0.85rem;
       padding: 0.45rem 1.1rem;
@@ -309,15 +310,19 @@
         gap: 0.9rem;
       }
 
-/* Smaller Pay button on mobile */
+      /* Icon-only Pay button on mobile */
       .nav-pay {
-          padding: 0.45rem 0.9rem !important;
-          font-size: 0.75rem !important;
-          border-radius: 999px;
-          width: auto;
-          display: inline-block;
+        padding: 0.35rem 0.6rem !important;
+        font-size: 0 !important;       /* hide text visually */
+        width: auto;
+        border-radius: 999px;
       }
 
+      .nav-pay::before {
+        content: "💳";
+        font-size: 1.1rem;
+        line-height: 1;
+      }
 
       main {
         padding: 1.25rem 1rem 2rem;
@@ -396,7 +401,8 @@
         <!-- Payment button in header -->
         <a class="btn-primary nav-pay"
            href="https://buy.stripe.com/9B614gfsY316aR75gk3VC00"
-           target="_blank">
+           target="_blank"
+           title="Pay for Remote Support">
            Pay for Remote Support
         </a>
       </div>
