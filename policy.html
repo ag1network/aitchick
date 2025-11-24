@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AiTchick – Account Access & Recovery Policy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Account access and recovery policy for AiTchick security setup sessions. Learn how your accounts, passwords, and recovery methods are handled." />
+
+  <!-- Google Font: Quicksand -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg: #050816;
+      --color-bg-soft: #0b1020;
+      --color-card: #0f172a;
+      --color-primary: #3b82f6;      /* main blue */
+      --color-primary-soft: #93c5fd; /* light blue */
+      --color-accent: #f97316;       /* orange accent */
+      --color-text: #f9fafb;
+      --color-muted: #9ca3af;
+      --color-border: #1f2937;
+      --shadow-soft: 0 18px 35px rgba(0, 0, 0, 0.45);
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #111827, #020617 50%, #000 100%);
+      color: var(--color-text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER – only the site header is sticky now */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.95),
+        rgba(2, 6, 23, 0.7),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .nav {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(
+        circle at 30% 20%,
+        #ffffff,
+        #60a5fa 40%,
+        #3b82f6 65%,
+        #f97316 100%
+      );
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.7);
+      flex-shrink: 0;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      font-size: 1.1rem;
+      white-space: nowrap;
+    }
+
+    .logo-ait {
+      background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      padding-right: 4px;
+    }
+
+    .logo-chick {
+      background: linear-gradient(90deg, #d9480f, #f25c05, #ff6b1a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .logo-text-sub {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      color: var(--color-muted);
+      padding: 0.25rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3b82f6, #f97316);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.2rem 1rem 2.4rem;
+    }
+
+    .policy-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .policy-kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .policy-title {
+      font-size: 1.9rem;
+      margin: 0 0 0.4rem;
+    }
+
+    .policy-intro {
+      font-size: 1rem;
+      color: var(--color-muted);
+      max-width: 40rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+      flex-shrink: 0;
+    }
+
+    .policy-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 1.5rem 1.3rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .policy-section-title {
+      font-size: 1.15rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .policy-text {
+      font-size: 0.96rem;
+      color: var(--color-muted);
+    }
+
+    .policy-text strong {
+      color: var(--color-text);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      margin-top: 1.1rem;
+    }
+
+    @media (min-width: 720px) {
+      .policy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .policy-subcard {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1rem;
+    }
+
+    .policy-subtitle {
+      font-size: 1rem;
+      margin: 0 0 0.4rem;
+    }
+
+    .policy-list {
+      font-size: 0.94rem;
+      color: var(--color-muted);
+      padding-left: 1.1rem;
+      margin: 0.3rem 0 0;
+    }
+
+    .policy-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    .highlight-box {
+      margin-top: 1.4rem;
+      background: linear-gradient(
+        135deg,
+        rgba(59, 130, 246, 0.18),
+        rgba(249, 115, 22, 0.16)
+      );
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1rem;
+      font-size: 0.94rem;
+      color: var(--color-muted);
+    }
+
+    .highlight-box strong {
+      color: var(--color-text);
+    }
+
+    .disclaimer-block {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding-top: 1rem;
+    }
+
+    .disclaimer-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.4rem;
+      font-size: 0.9rem;
+      color: var(--color-primary-soft);
+    }
+
+    .back-link span.arrow {
+      font-size: 1rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      margin-top: 2rem;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.1rem 1rem 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.86rem;
+      color: var(--color-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links span {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 17px;
+      }
+
+      .nav {
+        padding-inline: 0.8rem;
+      }
+
+      .policy-title {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="nav">
+        <div class="logo">
+          <div class="logo-mark" aria-hidden="true"></div>
+          <div>
+            <div class="logo-text-main">
+              <span class="logo-ait">AiT</span><span class="logo-chick">chick</span>
+            </div>
+            <div class="logo-text-sub">Account Security</div>
+          </div>
+        </div>
+
+        <nav class="nav-links">
+          <a href="index.html">Back to main site</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="content">
+        <header class="policy-header">
+          <div class="policy-kicker">Account access &amp; recovery policy</div>
+          <h1 class="policy-title">How your accounts and recovery are handled.</h1>
+          <p class="policy-intro">
+            This page explains how <span class="logo-ait">AiT</span><span class="logo-chick">chick</span> works with your
+            accounts, passwords, MFA, and recovery options during a security setup session.
+          </p>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span>You stay in full control — I guide, but I never keep access.</span>
+          </div>
+        </header>
+
+        <!-- Main policy card -->
+        <section class="policy-card">
+          <h2 class="policy-section-title">Account Access &amp; Recovery Policy</h2>
+          <p class="policy-text">
+            To keep things simple and safe: I help you secure your accounts, but I do not own, keep, or manage access
+            to them. Everything we set up during a session is designed so that <strong>you</strong> stay in full control.
+          </p>
+
+          <div class="policy-grid">
+            <article class="policy-subcard">
+              <h3 class="policy-subtitle">What I do</h3>
+              <ul class="policy-list">
+                <li>Guide you through setting up or cleaning up your password manager (usually Bitwarden).</li>
+                <li>Help you enable and configure MFA (Authy or Google Authenticator) on your key accounts.</li>
+                <li>Assist with storing recovery codes safely inside your password manager vault.</li>
+                <li>Walk through account security settings, active sessions, connected apps, and risky access.</li>
+                <li>Provide a simple “what to do if…” plan for lost devices or account issues.</li>
+              </ul>
+            </article>
+
+            <article class="policy-subcard">
+              <h3 class="policy-subtitle">What I never do</h3>
+              <ul class="policy-list">
+                <li>I do <strong>not</strong> store or keep your passwords.</li>
+                <li>I do <strong>not</strong> add my email, phone, or devices to your recovery options.</li>
+                <li>I do <strong>not</strong> create any secret way for me to get back into your accounts.</li>
+                <li>I do <strong>not</strong> manage your accounts after the session as an ongoing admin.</li>
+                <li>I do <strong>not</strong> guarantee recovery if providers deny access or policies change.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="highlight-box">
+            <strong>You stay in control.</strong> I set things up with you, explain what we’re doing, and make sure
+            recovery options are in <em>your</em> name (your phone, your email, your vault). After the session, I
+            cannot log into your accounts or reset them on your behalf.
+          </div>
+        </section>
+
+        <!-- Recovery & responsibilities -->
+        <section class="policy-card">
+          <h2 class="policy-section-title">Recovery setup &amp; your responsibilities</h2>
+          <p class="policy-text">
+            A big part of our work together is making sure you’re not locked out if something goes wrong, like
+            losing a phone, getting a new device, or an account being flagged for unusual activity.
+          </p>
+
+          <div class="policy-grid">
+            <article class="policy-subcard">
+              <h3 class="policy-subtitle">What’s in your recovery plan</h3>
+              <ul class="policy-list">
+                <li>Backup codes saved into your password manager for key accounts.</li>
+                <li>Recovery emails and phone numbers updated to ones you actually control.</li>
+                <li>MFA apps set up correctly, with recovery options where available.</li>
+                <li>A simple checklist for what to do if your phone is lost or replaced.</li>
+                <li>Guidance on keeping your password manager master password safe.</li>
+              </ul>
+            </article>
+
+            <article class="policy-subcard">
+              <h3 class="policy-subtitle">Your part in staying secure</h3>
+              <ul class="policy-list">
+                <li>Remember and protect your password manager master password.</li>
+                <li>Keep your recovery email and phone number up to date with each provider.</li>
+                <li>Store your devices safely and let providers know quickly if they’re lost or stolen.</li>
+                <li>Review the written notes or summary provided after our session, if applicable.</li>
+                <li>Contact the service provider directly (Google, Meta, bank, etc.) if you’re locked out.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer-block">
+          <div class="disclaimer-title">Disclaimer</div>
+          <p>
+            AiTchick provides one-time account security setup and educational guidance. All recovery methods—including
+            backup emails, phone numbers, MFA, and password manager access—remain fully owned and controlled by the
+            client. AiTchick does not store, manage, or retain access to client logins, passwords, recovery codes, or
+            account recovery methods. Clients are solely responsible for maintaining their own account recovery options
+            after the session.
+          </p>
+        </section>
+
+        <a class="back-link" href="index.html">
+          <span class="arrow">←</span>
+          <span>Back to main site</span>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© <span id="year"></span>
+          <span class="logo-ait">AiT</span><span class="logo-chick">chick</span>. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <span>Account Security &amp; MFA Setup</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
