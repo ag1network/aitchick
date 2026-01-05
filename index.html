@@ -1,1026 +1,411 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>AiTchick – Account Security & MFA Setup</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AiTchick helps creators, influencers, and small businesses lock down their accounts with secure passwords, MFA setup, and account hardening." />
+  <meta name="description" content="Mobile IT help for homes and small businesses. Wi-Fi, printers, slow computers, email setup and more. Call or text 754-300-8020." />
+  <title>AiT Chick | Mobile IT Help</title>
 
-  <!-- Google Font: Quicksand -->
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Optional favicon -->
+  <link rel="icon" type="image/png" href="aitchick-logo.png">
+
+  <!-- Font: Inter (clean + modern) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --color-bg: #050816;
-      --color-bg-soft: #0b1020;
-      --color-card: #0f172a;
-      --color-primary: #3b82f6;      /* main blue */
-      --color-primary-soft: #93c5fd; /* light blue */
-      --color-accent: #f97316;       /* orange accent */
-      --color-text: #f9fafb;
-      --color-muted: #9ca3af;
-      --color-border: #1f2937;
-      --shadow-soft: 0 18px 35px rgba(0, 0, 0, 0.45);
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --transition-fast: 180ms ease-out;
+    :root{
+      --blue:#1463FF;
+      --green:#10B981;
+      --bg:#0B1220;
+      --card:#0F1A2E;
+      --text:#EAF1FF;
+      --muted:#B9C7E6;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 980px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #111827, #020617 50%, #000 100%);
-      color: var(--color-text);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.7), transparent);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-    }
-
-    .nav {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0.85rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      min-width: 0;
-    }
-
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #ffffff, #60a5fa 40%, #3b82f6 65%, #f97316 100%);
-      box-shadow: 0 0 25px rgba(37, 99, 235, 0.7);
-      flex-shrink: 0;
-    }
-
-    .logo-text-main {
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      font-size: 1.1rem;
-      white-space: nowrap;
-    }
-
-    /* Branded AiTchick text */
-    .logo-ait {
-      background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-      padding-right: 4px;
-    }
-
-    .logo-chick {
-      background: linear-gradient(90deg, #d9480f, #f25c05, #ff6b1a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-
-    .logo-text-sub {
-      font-size: 0.82rem;
-      color: var(--color-muted);
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a {
-      color: var(--color-muted);
-      padding: 0.25rem 0;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -3px;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #3b82f6, #f97316);
-      transition: width var(--transition-fast);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      padding: 0.5rem 0.95rem;
-      border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.2);
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: rgba(15, 23, 42, 0.85);
-      white-space: nowrap;
-    }
-
-    .nav-cta-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.85);
-      flex-shrink: 0;
-    }
-
-    main {
-      flex: 1;
-    }
-
-    .hero {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 2.4rem 1rem 2.7rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr);
-      gap: 2.4rem;
-    }
-
-    @media (min-width: 880px) {
-      .hero {
-        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-        align-items: center;
-        padding-top: 3.2rem;
-      }
-    }
-
-    .hero-kicker {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--color-accent);
-      font-weight: 600;
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 2.6rem, 3rem);
-      line-height: 1.12;
-      font-weight: 700;
-      margin: 0 0 0.8rem;
-    }
-
-    .hero-highlight {
-      background: linear-gradient(90deg, #3b82f6, #60a5fa, #f97316);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-text {
-      font-size: 1.02rem;
-      color: var(--color-muted);
-      max-width: 36rem;
-      margin-bottom: 1.4rem;
-    }
-
-    .hero-badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.35rem;
-    }
-
-    .hero-badge {
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.82rem;
-      color: var(--color-muted);
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      align-items: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 0.85rem 1.35rem;
-      font-size: 0.98rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), opacity var(--transition-fast);
-      text-align: center;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #3b82f6, #f97316);
-      color: #020617;
-      box-shadow: var(--shadow-soft);
-      flex: 1 1 190px;
-      justify-content: center;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.55);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--color-text);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      flex: 1 1 150px;
-      justify-content: center;
-    }
-
-    .btn-outline:hover {
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .hero-note {
-      font-size: 0.88rem;
-      color: var(--color-muted);
-    }
-
-    .hero-note strong {
-      color: var(--color-primary-soft);
-    }
-
-    .hero-card {
-      background: radial-gradient(circle at top left, #1e293b, #020617 55%, #000 100%);
-      border-radius: var(--radius-xl);
-      padding: 1.6rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      opacity: 0.12;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
       background:
-        radial-gradient(circle at 10% 0%, #f97316, transparent 55%),
-        radial-gradient(circle at 100% 0%, #3b82f6, transparent 55%),
-        radial-gradient(circle at 0% 100%, #22c55e, transparent 55%);
-      pointer-events: none;
+        radial-gradient(1100px 500px at 10% -10%, rgba(20,99,255,.35), transparent 55%),
+        radial-gradient(900px 480px at 95% 0%, rgba(16,185,129,.30), transparent 60%),
+        linear-gradient(180deg, #070C16 0%, #0B1220 55%, #070C16 100%);
+      line-height:1.35;
     }
 
-    .hero-card-inner {
-      position: relative;
-      z-index: 1;
+    button{font-family:inherit}
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px 18px 90px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:10px 0 24px;
     }
 
-    .steps-label {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--color-primary-soft);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+    /* UPDATED: better centered brand block */
+    .brand{
+      display:flex;
+      align-items:center;     /* centers logo + text */
+      gap:16px;
+      font-weight:800;
+      letter-spacing:.2px;
     }
 
-    .steps-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    /* UPDATED: bigger logo image */
+	.logo-img{
+	  width:110px;
+	  height:110px;
+	  object-fit:contain;
+	  object-position:center;       /* NEW */
+	  display:block;                /* NEW */
+	  transform: translateY(6px);   /* NEW: nudges logo down to look centered */
+	  border-radius:0;
+	  background:none;
+	  border:none;
+	  padding:0;
+	  box-shadow:none;
+	}
+
+
+    /* NEW: control brand text alignment */
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      line-height:1.1;
+    }
+    .brand-name{
+      font-size:20px;
+      font-weight:800;
     }
 
-    .steps-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 1.1rem;
+    .brand small{
+      display:block;
+      font-weight:600;
+      color:var(--muted);
+      letter-spacing:0;
+      margin-top:4px;
+      font-size:13px;
     }
 
-    .step {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 14px;
-      padding: 0.75rem 0.8rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
+    .top-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px; border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:700;
+      backdrop-filter: blur(8px);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      min-height:44px;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18)}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      box-shadow: 0 16px 40px rgba(16,185,129,.18);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn .sub{font-weight:700; opacity:.95}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:6px;
+    }
+    @media (max-width: 880px){
+      .hero{grid-template-columns:1fr}
+      .top-actions{display:none;}
     }
 
-    .step-number {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 1);
-      border: 1px solid rgba(249, 250, 251, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: var(--color-primary-soft);
-      flex-shrink: 0;
+    .card{
+      background: rgba(15,26,46,.72);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
 
-    .step-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 0.15rem;
+    .hero-left{padding:26px 22px;}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      color:var(--muted);
+      background: rgba(255,255,255,.04);
+      font-weight:700;
+      font-size:13px;
+    }
+    .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(16,185,129,.12);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height:1.05;
+      letter-spacing:-.5px;
+    }
+    .lead{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 16.5px;
+      max-width: 60ch;
+    }
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap}
+    .hero-actions .btn{min-width:160px}
+
+    .trust{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+      color: var(--muted);
+      font-weight:650;
+      font-size: 13px;
+    }
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius:999px;
+    }
+    .check{
+      width:18px; height:18px; border-radius:6px;
+      background: rgba(20,99,255,.18);
+      border:1px solid rgba(20,99,255,.35);
+      display:inline-flex; align-items:center; justify-content:center;
+      font-weight:900; color:#CFE0FF;
+      line-height:1;
     }
 
-    .step-text {
-      font-size: 0.86rem;
-      color: var(--color-muted);
+    .hero-right{padding:18px;}
+    .form-wrap{padding:18px 16px;}
+    .form-title{font-size:16px; margin:0 0 6px; font-weight:800}
+    .form-sub{margin:0 0 14px; color:var(--muted); font-size:13.5px}
+    form{display:grid; gap:10px}
+    label{font-size:12px; color:var(--muted); font-weight:750}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+      font-size: 15px;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(20,99,255,.55);
+      box-shadow: 0 0 0 5px rgba(20,99,255,.12);
+    }
+    textarea{min-height:96px; resize:vertical}
+    .form-actions{display:flex; gap:10px; flex-wrap:wrap}
+    .hint{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
     }
 
-    .hero-tagline {
-      font-size: 0.9rem;
-      color: var(--color-muted);
+    section{margin-top:18px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .service{
+      padding:16px;
+    }
+    .service h3{margin:8px 0 6px; font-size:16px}
+    .service p{margin:0; color:var(--muted); font-size:13.5px}
+    .icon{
+      width:38px;height:38px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background: rgba(16,185,129,.12);
+      border:1px solid rgba(16,185,129,.28);
+      box-shadow: 0 14px 30px rgba(16,185,129,.08);
+      font-weight:900;
+    }
+    .icon.blue{
+      background: rgba(20,99,255,.12);
+      border-color: rgba(20,99,255,.30);
+      box-shadow: 0 14px 30px rgba(20,99,255,.08);
     }
 
-    .hero-tagline span {
-      color: var(--color-primary-soft);
-      font-weight: 600;
+    footer{
+      margin-top:18px;
+      padding:16px 2px;
+      color: var(--muted);
+      font-size: 12.5px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
 
-    .section {
-      max-width: 1080px;
+    .sticky{
+      position:fixed; left:0; right:0; bottom:0;
+      background: rgba(11,18,32,.82);
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      padding:10px 12px;
+      display:none;
+      z-index:50;
+    }
+    .sticky .inner{
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 1.9rem 1rem 0.9rem;
+      display:flex; gap:10px;
     }
-
-    .section-header {
-      margin-bottom: 1.25rem;
-    }
-
-    .section-kicker {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--color-accent);
-      margin-bottom: 0.45rem;
-      font-weight: 600;
-    }
-
-    .section-title {
-      font-size: 1.45rem;
-      margin: 0 0 0.3rem;
-    }
-
-    .section-text {
-      font-size: 1rem;
-      color: var(--color-muted);
-      max-width: 36rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1rem;
-    }
-
-    @media (min-width: 720px) {
-      .features-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .feature-card {
-      background: var(--color-card);
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      border: 1px solid var(--color-border);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
-    }
-
-    .feature-title {
-      font-size: 1.02rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .feature-text {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-    }
-
-    .who-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.95rem;
-    }
-
-    @media (min-width: 720px) {
-      .who-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .who-card {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      border: 1px dashed rgba(148, 163, 184, 0.4);
-    }
-
-    .who-title {
-      font-size: 0.98rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .who-text {
-      font-size: 0.88rem;
-      color: var(--color-muted);
-    }
-
-    .pricing-wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.1rem;
-    }
-
-    @media (min-width: 720px) {
-      .pricing-wrap {
-        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      }
-    }
-
-    .pricing-card {
-      background: radial-gradient(circle at top left, #3b82f610, #020617 55%, #000 100%);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(248, 250, 252, 0.18);
-      padding: 1.4rem 1.25rem;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .price-label {
-      font-size: 0.86rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--color-primary-soft);
-      margin-bottom: 0.35rem;
-    }
-
-    .price-main {
-      font-size: 1.45rem;
-      margin-bottom: 0.25rem;
-      font-weight: 700;
-    }
-
-    .price-note {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .price-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 0.85rem;
-      font-size: 0.9rem;
-      color: var(--color-muted);
-    }
-
-    .price-list li {
-      display: flex;
-      gap: 0.35rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .price-bullet {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      margin-top: 0.25rem;
-      background: radial-gradient(circle, #3b82f6, #f97316);
-      flex-shrink: 0;
-    }
-
-    .contact-card {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: var(--radius-lg);
-      padding: 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.95rem;
-      color: var(--color-muted);
-    }
-
-    .contact-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-    }
-
-    .contact-row span {
-      font-size: 0.9rem;
-    }
-
-    .contact-highlight {
-      color: var(--color-primary-soft);
-      font-weight: 600;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 0.8rem;
-    }
-
-    .btn-subtle {
-      border-radius: 999px;
-      padding: 0.6rem 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.85);
-      font-size: 0.9rem;
-    }
-
-    /* FAQ */
-    .faq-block {
-      margin-top: 1.8rem;
-    }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.9rem;
-    }
-
-    @media (min-width: 720px) {
-      .faq-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .faq-item {
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 0.95rem 1rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-    }
-
-    .faq-q {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 0.3rem;
-      color: #e5e7eb;
-    }
-
-    .faq-a {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--color-muted);
-    }
-
-    footer {
-      border-top: 1px solid rgba(15, 23, 42, 0.9);
-      margin-top: 2.2rem;
-    }
-
-    .footer-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 1.1rem 1rem 1.4rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.86rem;
-      color: var(--color-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-    }
-
-    .footer-links span {
-      white-space: nowrap;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        font-size: 17px; /* bump base on small screens */
-      }
-
-      .hero {
-        padding-top: 2.2rem;
-      }
-
-      .nav {
-        padding-inline: 0.75rem;
-      }
-
-      .hero-text,
-      .section-text {
-        font-size: 1.02rem;
-      }
-
-      .btn-primary,
-      .btn-outline {
-        width: 100%;
-      }
-
-      .pricing-card {
-        padding: 1.2rem 1.05rem;
-      }
-
-      .contact-card {
-        padding: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-links a:nth-child(1),
-      .nav-links a:nth-child(2),
-      .nav-links a:nth-child(3) {
-        display: none;
-      }
-
-      .nav-cta span:last-child {
-        font-size: 0.82rem;
-      }
+    .sticky .btn{flex:1}
+    @media (max-width: 880px){
+      .sticky{display:block;}
+      .wrap{padding-bottom:120px;}
     }
   </style>
 </head>
-<body>
-  <div class="page">
-    <header>
-      <div class="nav">
-        <div class="logo">
-          <div class="logo-mark" aria-hidden="true"></div>
-          <div>
-            <div class="logo-text-main">
-              <span class="logo-ait">AiT</span><span class="logo-chick">chick</span>
-            </div>
-            <div class="logo-text-sub">Account Security</div>
-          </div>
-        </div>
 
-        <div class="nav-links">
-          <a href="#how">How it works</a>
-          <a href="#services">What’s included</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-          <a class="nav-cta" href="sms:17543008020">
-            <span class="nav-cta-dot"></span>
-            <span>Text: 754-300-8020</span>
-          </a>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#top" aria-label="AiT Chick Home">
+        <img class="logo-img" src="aitchick-logo.png" alt="AiT Chick logo" />
+        <div class="brand-text">
+          <span class="brand-name">AiT Chick</span>
+          <small>Mobile IT Help</small>
         </div>
+      </a>
+
+      <div class="top-actions" aria-label="Contact actions">
+        <a class="btn" href="mailto:tech@aitchick.com?subject=Mobile%20IT%20Help%20Request"><span class="sub">Email</span></a>
+        <a class="btn" href="sms:+17543008020"><span class="sub">Text</span></a>
+        <a class="btn primary" href="tel:+17543008020"><span class="sub">Call 754-300-8020</span></a>
       </div>
     </header>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero" id="top">
-        <div>
-          <div class="hero-kicker">Account security for real people</div>
-          <h1 class="hero-title">
-            Lock down your
-            <span class="hero-highlight">logins, MFA, and accounts</span>
-            before something goes wrong.
-          </h1>
-          <p class="hero-text">
-            <span class="logo-ait">AiT</span><span class="logo-chick">chick</span>
-            helps creators, influencers, and small businesses secure the accounts that actually matter:
-            email, social media, banking, and cloud apps. I set up a password manager, MFA, and recovery so you’re
-            protected <em>before</em> a hack happens.
-          </p>
-          <div class="hero-badge-row">
-            <div class="hero-badge">Password manager setup</div>
-            <div class="hero-badge">MFA app setup</div>
-            <div class="hero-badge">Account hardening</div>
-          </div>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="sms:17543008020">
-              <span>Text 754-300-8020</span>
-              <span>📱</span>
-            </a>
-            <a class="btn btn-outline" href="#pricing">View packages</a>
-          </div>
-          <div class="hero-note">
-            <strong>No calls, text only.</strong> Remote sessions available for South Florida &amp; beyond.
-          </div>
+    <main id="top" class="hero">
+      <section class="card hero-left">
+        <div class="kicker"><span class="dot" aria-hidden="true"></span> Same-day help when possible • Homes & Small Businesses</div>
+        <h1>Wi-Fi, printers, slow computers, fixed at your place.</h1>
+        <p class="lead">
+          On-site tech support for everyday issues: setup, troubleshooting, cleanups, and quick fixes.
+          Send a message and tell me what’s going on.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="tel:+17543008020">Call Now</a>
+          <a class="btn" href="sms:+17543008020">Text Me</a>
+          <a class="btn" href="#contact">Request Help</a>
         </div>
 
-        <aside class="hero-card" aria-label="Overview of the security session">
-          <div class="hero-card-inner">
-            <div class="steps-label">
-              <span class="steps-dot"></span>
-              <span>What we do in a session</span>
-            </div>
-            <div class="steps-grid">
-              <div class="step">
-                <div class="step-number">1</div>
-                <div>
-                  <div class="step-title">Secure your vault</div>
-                  <div class="step-text">
-                    We create or clean up your Bitwarden vault, set a strong master password, and organize your logins.
-                  </div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-number">2</div>
-                <div>
-                  <div class="step-title">Set up MFA correctly</div>
-                  <div class="step-text">
-                    We pick an MFA app (Authy or Google Authenticator), move your codes, and safely store backup codes.
-                  </div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-number">3</div>
-                <div>
-                  <div class="step-title">Lock down key accounts</div>
-                  <div class="step-text">
-                    Email, social, banking, cloud apps: we review settings, recovery options, and kick out risky access.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="hero-tagline">
-              You leave with a <span>hardened setup</span>, written instructions, and a plan for what to do if you
-              lose a device.
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- How it works -->
-      <section class="section" id="how">
-        <div class="section-header">
-          <div class="section-kicker">How it works</div>
-          <h2 class="section-title">Simple, guided, and non-judgy.</h2>
-          <p class="section-text">
-            You don’t have to be technical. I walk you through everything over a remote session and do the heavy
-            lifting for you.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <article class="feature-card">
-            <h3 class="feature-title">Quick risk review</h3>
-            <p class="feature-text">
-              We identify your “keys to the kingdom” accounts like email, socials, and banking; and secure them first.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3 class="feature-title">Password manager setup</h3>
-            <p class="feature-text">
-              Clean up your password chaos, organize your vault, and set a secure master password with safety best practices.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3 class="feature-title">MFA + recovery done right</h3>
-            <p class="feature-text">
-              Configure Authy or Google Authenticator, migrate codes safely, and store recovery codes securely so a lost phone doesn’t lock you out of life.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3 class="feature-title">Account hardening</h3>
-            <p class="feature-text">
-              Review security settings, remove old sessions and devices, and fix risky access on your most important accounts.
-            </p>
-          </article>
+        <div class="trust" aria-label="Trust indicators">
+          <span class="pill"><span class="check" aria-hidden="true">✓</span> Mobile service</span>
+          <span class="pill"><span class="check" aria-hidden="true">✓</span> Clear communication</span>
+          <span class="pill"><span class="check" aria-hidden="true">✓</span> Clean, tidy work</span>
         </div>
       </section>
 
-      <!-- Services -->
-      <section class="section" id="services">
-        <div class="section-header">
-          <div class="section-kicker">What’s included</div>
-          <h2 class="section-title">Your “please don’t let me get hacked” package.</h2>
-          <p class="section-text">
-            A focused session to secure your digital life, clean up your logins, and set you up for long-term safety you actually understand.
-          </p>
-        </div>
+      <aside class="card hero-right" id="contact">
+        <div class="form-wrap">
+          <p class="form-title">Contact</p>
+          <p class="form-sub">Fill this out and it’ll open an email to <strong>tech@aitchick.com</strong>.</p>
 
-        <div class="features-grid">
-          <article class="feature-card">
-            <h3 class="feature-title">Bitwarden vault setup</h3>
-            <p class="feature-text">
-              Secure vault setup, folder/collection structure, cleanup of weak or repeated passwords, and coaching on how to keep things tidy.
+          <form id="contactForm">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
+            </div>
+
+            <div>
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(754) 300-8020" />
+            </div>
+
+            <div>
+              <label for="issue">What do you need help with?</label>
+              <textarea id="issue" name="issue" placeholder="Example: Wi-Fi keeps dropping, printer won’t print, laptop is slow…" required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn primary" type="submit">Send Request</button>
+              <a class="btn" href="mailto:tech@aitchick.com?subject=Mobile%20IT%20Help%20Request">Email Instead</a>
+            </div>
+
+            <p class="hint">
+              Prefer texting? Tap <strong>Text Me</strong> below, or call <strong>754-300-8020</strong>.
             </p>
-          </article>
-
-          <article class="feature-card">
-            <h3 class="feature-title">Dedicated MFA app setup</h3>
-            <p class="feature-text">
-              Authy or Google Authenticator installed and configured on your devices, with codes migrated safely and tested.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3 class="feature-title">Key account hardening</h3>
-            <p class="feature-text">
-              Email, social media, banking, and cloud apps reviewed and hardened: recovery options, login activity, connected apps, and security settings.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <h3 class="feature-title">Backup & recovery plan</h3>
-            <p class="feature-text">
-              Store recovery codes safely inside your password manager and walk through a simple, written “what to do if…” plan for bad days.
-            </p>
-          </article>
+          </form>
         </div>
-      </section>
-
-      <!-- Who it's for + pricing -->
-      <section class="section" id="pricing">
-        <div class="section-header">
-          <div class="section-kicker">Who it's for</div>
-          <h2 class="section-title">If losing an account would hurt, this is for you.</h2>
-        </div>
-
-        <div class="pricing-wrap">
-          <div>
-            <div class="who-grid">
-              <article class="who-card">
-                <h3 class="who-title">Creators & influencers</h3>
-                <p class="who-text">
-                  Instagram, TikTok, YouTube, Twitch, OnlyFans, Patreon—if your income or reputation depends on these, you need more than “just a password.”
-                </p>
-              </article>
-
-              <article class="who-card">
-                <h3 class="who-title">Small business owners</h3>
-                <p class="who-text">
-                  Owner-operators and small teams who rely on email, banking, and cloud tools but don’t have a full-time security person.
-                </p>
-              </article>
-
-              <article class="who-card">
-                <h3 class="who-title">Busy humans</h3>
-                <p class="who-text">
-                  Anyone who knows they should “do something about security” but feels overwhelmed by passwords, MFA, and recovery codes.
-                </p>
-              </article>
-            </div>
-          </div>
-
-          <aside class="pricing-card">
-            <div class="price-label">Session pricing</div>
-            <div class="price-main">Security Setup Session<br />Starting at $249</div>
-            <div class="price-note">
-              Most clients fall between $249–$349 depending on how many accounts and devices we’re working through.
-            </div>
-
-            <ul class="price-list">
-              <li><span class="price-bullet"></span><span>Guided remote session (usually 60–90 minutes)</span></li>
-              <li><span class="price-bullet"></span><span>Bitwarden + MFA app setup and configuration</span></li>
-              <li><span class="price-bullet"></span><span>Security review of key email & social accounts</span></li>
-              <li><span class="price-bullet"></span><span>Written summary & simple “what to do if…” guide</span></li>
-            </ul>
-
-            <a class="btn btn-primary" href="sms:17543008020">
-              Text to get a quote
-            </a>
-
-            <div class="price-note" style="margin-top:0.7rem;">
-              Tools like Bitwarden, Authy, or Google Authenticator are separate services; most are free or low-cost.
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- Contact & FAQ -->
-      <section class="section" id="contact">
-        <div class="section-header">
-          <div class="section-kicker">Contact</div>
-          <h2 class="section-title">Ready to lock things down?</h2>
-          <p class="section-text">
-            Text with the accounts you’d like secured (socials, email, banking, business tools, etc.) and I’ll reply with next steps.
-          </p>
-        </div>
-
-        <div class="contact-card">
-          <strong>Text only – no calls.</strong>
-          <div class="contact-row">
-            <span>📱 <span class="contact-highlight">Text: 754-300-8020</span></span>
-            <span>✉️ Email: <span class="contact-highlight">tech@aitchick.com</span></span>
-            <span>🌎 Based in South Florida • Remote friendly</span>
-          </div>
-
-          <div class="contact-actions">
-            <a class="btn-subtle" href="sms:17543008020">Open text message</a>
-            <a class="btn-subtle" href="mailto:tech@aitchick.com?subject=Account%20Security%20Session">
-              Email about a session
-            </a>
-          </div>
-        </div>
-
-        <div class="faq-block">
-          <div class="section-kicker" style="margin-bottom:0.6rem;">Questions</div>
-          <div class="faq-grid">
-            <div class="faq-item">
-              <div class="faq-q">Do you see my passwords?</div>
-              <div class="faq-a">
-                You stay in control. I guide the session, but you see every step. Wherever possible we avoid reading passwords out loud, and you can review any change we make together.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">What tools do you use?</div>
-              <div class="faq-a">
-                Typically Bitwarden for password management plus Authy or Google Authenticator for MFA. If you’re already using other tools, we’ll decide together whether to keep or migrate them.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Can you work with small teams?</div>
-              <div class="faq-a">
-                Yes. Managers, assistants, or partners—we can set up shared access safely so you’re not passing passwords around in plain text.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Is this ongoing support?</div>
-              <div class="faq-a">
-                This is a focused one-time setup and hardening session. If you’d like ongoing check-ins or help as things grow, we can arrange a simple retainer after the first session.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </aside>
     </main>
 
-  <footer>
-    <div class="footer-inner">
-      <div>© <span id="year"></span>
-        <span class="logo-ait">AiT</span><span class="logo-chick">chick</span>. All rights reserved.
+    <section class="grid" aria-label="Services">
+      <div class="card service">
+        <div class="icon blue" aria-hidden="true">📶</div>
+        <h3>Wi-Fi & Internet</h3>
+        <p>Dead zones, drops, slow speeds, router swaps, mesh setup, basic network cleanup.</p>
       </div>
 
-      <div class="footer-links">
-        
-        <a href="policy.html" style="color: var(--color-primary-soft); white-space: nowrap;">
-          Account Access & Recovery Policy
-        </a>
-
-        <span>Account Security &amp; MFA Setup</span>
+      <div class="card service">
+        <div class="icon" aria-hidden="true">🖨️</div>
+        <h3>Printers & Devices</h3>
+        <p>Printer setup, scanning, drivers, connections, “it worked yesterday” problems.</p>
       </div>
+
+      <div class="card service">
+        <div class="icon blue" aria-hidden="true">💻</div>
+        <h3>Computers & Email</h3>
+        <p>New computer setup, tune-ups, malware cleanup, Outlook/email setup & recovery.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> AiT Chick • Mobile IT Help</div>
+      <div>
+        <a class="btn" style="padding:10px 12px" href="mailto:tech@aitchick.com">tech@aitchick.com</a>
+        <a class="btn" style="padding:10px 12px" href="tel:+17543008020">754-300-8020</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="sticky" role="navigation" aria-label="Mobile contact bar">
+    <div class="inner">
+      <a class="btn" href="sms:+17543008020">Text</a>
+      <a class="btn primary" href="tel:+17543008020">Call</a>
     </div>
-  </footer>
-
+  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const issue = document.getElementById("issue").value.trim();
+
+      const subject = encodeURIComponent("Mobile IT Help Request");
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Phone: ${phone || "N/A"}\n\n` +
+        `Issue:\n${issue}\n\n` +
+        `Preferred contact: ${phone ? "Call/Text" : "Email"}`
+      );
+
+      window.location.href = `mailto:tech@aitchick.com?subject=${subject}&body=${body}`;
+    });
   </script>
 </body>
 </html>
