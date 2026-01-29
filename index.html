@@ -3,8 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Mobile IT help for homes and small businesses. Wi-Fi, printers, slow computers, email setup and more. Call or text 754-300-8020." />
-  <title>AiT Chick | Mobile IT Help</title>
+
+  <!-- UPDATED: SEO-friendly description + title (edit cities/service area if needed) -->
+  <meta name="description" content="Local computer repair & mobile IT help in South Florida (Broward & nearby). Wi-Fi, printers, slow computers, email setup and more. Call or text 754-300-8020." />
+  <title>AiT Chick | Computer Repair & IT Support in South Florida</title>
+
+  <!-- NEW: Canonical + Open Graph -->
+  <link rel="canonical" href="https://aitchick.com/" />
+  <meta property="og:title" content="AiT Chick | Local Computer Repair & IT Support" />
+  <meta property="og:description" content="Wi-Fi, printers, and slow computers fixed at your place. Serving South Florida." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aitchick.com/" />
+  <meta property="og:image" content="https://aitchick.com/aitchick-logo.png" />
 
   <!-- Optional favicon -->
   <link rel="icon" type="image/png" href="aitchick-logo.png">
@@ -13,6 +23,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- NEW: LocalBusiness structured data (edit cities/service area if needed) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AiT Chick",
+    "url": "https://aitchick.com/",
+    "telephone": "+1-754-300-8020",
+    "email": "tech@aitchick.com",
+    "image": "https://aitchick.com/aitchick-logo.png",
+    "description": "Local computer repair and mobile IT support for homes and small businesses in South Florida. Wi-Fi, printers, slow computers, email and Microsoft 365 setup.",
+    "areaServed": [
+      "Fort Lauderdale, FL",
+      "Davie, FL",
+      "Hollywood, FL",
+      "Pembroke Pines, FL",
+      "Miramar, FL",
+      "Plantation, FL",
+      "Broward County, FL"
+    ],
+    "priceRange": "$$",
+    "sameAs": []
+  }
+  </script>
 
   <style>
     :root{
@@ -60,20 +95,19 @@
     }
 
     /* UPDATED: bigger logo image */
-	.logo-img{
-	  width:110px;
-	  height:110px;
-	  object-fit:contain;
-	  object-position:center;       /* NEW */
-	  display:block;                /* NEW */
-	  transform: translateY(6px);   /* NEW: nudges logo down to look centered */
-	  border-radius:0;
-	  background:none;
-	  border:none;
-	  padding:0;
-	  box-shadow:none;
-	}
-
+    .logo-img{
+      width:110px;
+      height:110px;
+      object-fit:contain;
+      object-position:center;       /* NEW */
+      display:block;                /* NEW */
+      transform: translateY(6px);   /* NEW: nudges logo down to look centered */
+      border-radius:0;
+      background:none;
+      border:none;
+      padding:0;
+      box-shadow:none;
+    }
 
     /* NEW: control brand text alignment */
     .brand-text{
@@ -298,7 +332,10 @@
     <main id="top" class="hero">
       <section class="card hero-left">
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Same-day help when possible • Homes & Small Businesses</div>
-        <h1>Wi-Fi, printers, slow computers, fixed at your place.</h1>
+
+        <!-- UPDATED: H1 includes "Local computer repair" -->
+        <h1>Local computer repair Wi-Fi, printers, and slow computers fixed at your place.</h1>
+
         <p class="lead">
           On-site tech support for everyday issues: setup, troubleshooting, cleanups, and quick fixes.
           Send a message and tell me what’s going on.
@@ -307,7 +344,8 @@
         <div class="hero-actions">
           <a class="btn primary" href="tel:+17543008020">Call Now</a>
           <a class="btn" href="sms:+17543008020">Text Me</a>
-          <a class="btn" href="#contact">Request Help</a>
+          <!-- OPTIONAL: better CTA text -->
+          <a class="btn" href="#contact">Get Help Today</a>
         </div>
 
         <div class="trust" aria-label="Trust indicators">
@@ -315,12 +353,19 @@
           <span class="pill"><span class="check" aria-hidden="true">✓</span> Clear communication</span>
           <span class="pill"><span class="check" aria-hidden="true">✓</span> Clean, tidy work</span>
         </div>
+
+        <!-- NEW: Service area (city keywords help local SEO) -->
+        <div style="margin-top:16px; color: var(--muted); font-size:13.5px;">
+          <strong style="color: var(--text);">Service area:</strong>
+          Fort Lauderdale, Davie, Hollywood, Pembroke Pines, Miramar, Plantation, and nearby South Florida areas.
+        </div>
       </section>
 
       <aside class="card hero-right" id="contact">
         <div class="form-wrap">
           <p class="form-title">Contact</p>
-          <p class="form-sub">Fill this out and it’ll open an email to <strong>tech@aitchick.com</strong>.</p>
+          <!-- UPDATED: adds reassurance on reply time -->
+          <p class="form-sub">Fill this out and it’ll open an email to <strong>tech@aitchick.com</strong>. Most replies within 1 business day.</p>
 
           <form id="contactForm">
             <div>
@@ -351,23 +396,28 @@
       </aside>
     </main>
 
-    <section class="grid" aria-label="Services">
-      <div class="card service">
-        <div class="icon blue" aria-hidden="true">📶</div>
-        <h3>Wi-Fi & Internet</h3>
-        <p>Dead zones, drops, slow speeds, router swaps, mesh setup, basic network cleanup.</p>
-      </div>
+    <!-- NEW: Adds a visible H2 heading to help SEO + scanning -->
+    <section aria-label="Services" style="margin-top:18px;">
+      <h2 style="margin:0 0 10px; font-size:18px; letter-spacing:-.2px;">Services</h2>
 
-      <div class="card service">
-        <div class="icon" aria-hidden="true">🖨️</div>
-        <h3>Printers & Devices</h3>
-        <p>Printer setup, scanning, drivers, connections, “it worked yesterday” problems.</p>
-      </div>
+      <div class="grid">
+        <div class="card service">
+          <div class="icon blue" aria-hidden="true">📶</div>
+          <h3>Wi-Fi & Internet</h3>
+          <p>Dead zones, drops, slow speeds, router swaps, mesh setup, basic network cleanup.</p>
+        </div>
 
-      <div class="card service">
-        <div class="icon blue" aria-hidden="true">💻</div>
-        <h3>Computers & Email</h3>
-        <p>New computer setup, tune-ups, malware cleanup, Outlook/email setup & recovery.</p>
+        <div class="card service">
+          <div class="icon" aria-hidden="true">🖨️</div>
+          <h3>Printers & Devices</h3>
+          <p>Printer setup, scanning, drivers, connections, “it worked yesterday” problems.</p>
+        </div>
+
+        <div class="card service">
+          <div class="icon blue" aria-hidden="true">💻</div>
+          <h3>Computers & Email</h3>
+          <p>New computer setup, tune-ups, malware cleanup, Outlook/email setup & recovery.</p>
+        </div>
       </div>
     </section>
 
