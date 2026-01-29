@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- UPDATED: SEO-friendly description + title (edit cities/service area if needed) -->
-  <meta name="description" content="Local computer repair & IT servces help in South Florida (Broward & nearby). Wi-Fi, printers, slow computers, email setup and more. Call or text 754-300-8020." />
+  <!-- UPDATED: SEO-friendly description + title -->
+  <meta name="description" content="Local computer repair & IT services in South Florida (Broward & nearby). Wi-Fi, printers, slow computers, email setup and more. Call or text 754-300-8020." />
   <title>AiT Chick | Computer Repair & IT Support in South Florida</title>
 
-  <!-- NEW: Canonical + Open Graph -->
+  <!-- Canonical + Open Graph -->
   <link rel="canonical" href="https://aitchick.com/" />
   <meta property="og:title" content="AiT Chick | Local Computer Repair & IT Support" />
   <meta property="og:description" content="Wi-Fi, printers, and slow computers fixed at your place. Serving South Florida." />
@@ -19,12 +19,12 @@
   <!-- Optional favicon -->
   <link rel="icon" type="image/png" href="aitchick-logo.png">
 
-  <!-- Font: Inter (clean + modern) -->
+  <!-- Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- NEW: LocalBusiness structured data (edit cities/service area if needed) -->
+  <!-- LocalBusiness structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -77,31 +77,29 @@
     }
 
     button{font-family:inherit}
-
     a{color:inherit; text-decoration:none}
+
     .wrap{max-width:var(--max); margin:0 auto; padding:24px 18px 90px;}
     header{
       display:flex; align-items:center; justify-content:space-between;
       gap:14px; padding:10px 0 24px;
     }
 
-    /* UPDATED: better centered brand block */
     .brand{
       display:flex;
-      align-items:center;     /* centers logo + text */
+      align-items:center;
       gap:16px;
       font-weight:800;
       letter-spacing:.2px;
     }
 
-    /* UPDATED: bigger logo image */
     .logo-img{
       width:110px;
       height:110px;
       object-fit:contain;
-      object-position:center;       /* NEW */
-      display:block;                /* NEW */
-      transform: translateY(6px);   /* NEW: nudges logo down to look centered */
+      object-position:center;
+      display:block;
+      transform: translateY(6px);
       border-radius:0;
       background:none;
       border:none;
@@ -109,7 +107,6 @@
       box-shadow:none;
     }
 
-    /* NEW: control brand text alignment */
     .brand-text{
       display:flex;
       flex-direction:column;
@@ -304,9 +301,18 @@
       display:flex; gap:10px;
     }
     .sticky .btn{flex:1}
+
     @media (max-width: 880px){
       .sticky{display:block;}
       .wrap{padding-bottom:120px;}
+    }
+
+    /* NEW: extra mobile polish */
+    @media (max-width: 480px){
+      .hero-actions .btn{min-width:0; width:100%;}
+      .form-actions .btn{min-width:0; width:100%;}
+      .logo-img{width:72px; height:72px; transform:none;}
+      .brand-name{font-size:18px;}
     }
   </style>
 </head>
@@ -323,7 +329,8 @@
       </a>
 
       <div class="top-actions" aria-label="Contact actions">
-        <a class="btn" href="mailto:tech@aitchick.com?subject=Mobile%20IT%20Help%20Request"><span class="sub">Email</span></a>
+        <!-- UPDATED: consistent subject line -->
+        <a class="btn" href="mailto:tech@aitchick.com?subject=IT%20Services%20Request"><span class="sub">Email</span></a>
         <a class="btn" href="sms:+17543008020"><span class="sub">Text</span></a>
         <a class="btn primary" href="tel:+17543008020"><span class="sub">Call 754-300-8020</span></a>
       </div>
@@ -333,8 +340,8 @@
       <section class="card hero-left">
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Same-day help when possible • Homes & Small Businesses</div>
 
-        <!-- UPDATED: H1 includes "Local computer repair" -->
-        <h1>Local computer repair Wi-Fi, printers, and slow computers fixed at your place.</h1>
+        <!-- UPDATED: punctuation + readability -->
+        <h1>Local computer repair. Wi-Fi, printers, and slow computers fixed at your place.</h1>
 
         <p class="lead">
           On-site tech support for everyday issues: setup, troubleshooting, cleanups, and quick fixes.
@@ -344,7 +351,6 @@
         <div class="hero-actions">
           <a class="btn primary" href="tel:+17543008020">Call Now</a>
           <a class="btn" href="sms:+17543008020">Text Me</a>
-          <!-- OPTIONAL: better CTA text -->
           <a class="btn" href="#contact">Get Help Today</a>
         </div>
 
@@ -354,7 +360,6 @@
           <span class="pill"><span class="check" aria-hidden="true">✓</span> Clean, tidy work</span>
         </div>
 
-        <!-- NEW: Service area (city keywords help local SEO) -->
         <div style="margin-top:16px; color: var(--muted); font-size:13.5px;">
           <strong style="color: var(--text);">Service area:</strong>
           Fort Lauderdale, Davie, Hollywood, Pembroke Pines, Miramar, Plantation, and nearby South Florida areas.
@@ -364,7 +369,6 @@
       <aside class="card hero-right" id="contact">
         <div class="form-wrap">
           <p class="form-title">Contact</p>
-          <!-- UPDATED: adds reassurance on reply time -->
           <p class="form-sub">Fill this out and it’ll open an email to <strong>tech@aitchick.com</strong>. Most replies within 1 business day.</p>
 
           <form id="contactForm">
@@ -375,7 +379,7 @@
 
             <div>
               <label for="phone">Phone (optional)</label>
-              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(754) 300-8020" />
+              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="(754) 300-8020" pattern="[0-9()+ -]*" />
             </div>
 
             <div>
@@ -385,7 +389,8 @@
 
             <div class="form-actions">
               <button class="btn primary" type="submit">Send Request</button>
-              <a class="btn" href="mailto:tech@aitchick.com?subject=Mobile%20IT%20Help%20Request">Email Instead</a>
+              <!-- UPDATED: consistent subject line -->
+              <a class="btn" href="mailto:tech@aitchick.com?subject=IT%20Services%20Request">Email Instead</a>
             </div>
 
             <p class="hint">
@@ -396,7 +401,6 @@
       </aside>
     </main>
 
-    <!-- NEW: Adds a visible H2 heading to help SEO + scanning -->
     <section aria-label="Services" style="margin-top:18px;">
       <h2 style="margin:0 0 10px; font-size:18px; letter-spacing:-.2px;">Services</h2>
 
@@ -424,7 +428,7 @@
     <footer>
       <div>© <span id="year"></span> AiT Chick • IT Services</div>
       <div>
-        <a class="btn" style="padding:10px 12px" href="mailto:tech@aitchick.com">tech@aitchick.com</a>
+        <a class="btn" style="padding:10px 12px" href="mailto:tech@aitchick.com?subject=IT%20Services%20Request">tech@aitchick.com</a>
         <a class="btn" style="padding:10px 12px" href="tel:+17543008020">754-300-8020</a>
       </div>
     </footer>
@@ -446,6 +450,7 @@
       const phone = document.getElementById("phone").value.trim();
       const issue = document.getElementById("issue").value.trim();
 
+      // UPDATED: consistent subject line
       const subject = encodeURIComponent("IT Services Request");
       const body = encodeURIComponent(
         `Name: ${name}\n` +
