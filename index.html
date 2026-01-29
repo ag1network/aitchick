@@ -425,6 +425,48 @@
       </div>
     </section>
 
+
+<section id="pay" style="margin-top:24px;">
+  <h2 style="margin:0 0 10px;">Pay Online</h2>
+
+  <div class="card service">
+
+    <!-- NEW: center wrapper -->
+    <div style="
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      gap:10px;
+    ">
+
+      <div class="icon blue">💳</div>
+
+      <h3>Tech Support Session</h3>
+
+      <p style="color:var(--muted); font-size:13.5px;">
+        Pay securely by card, Apple Pay, or Google Pay.
+      </p>
+
+      <!-- Stripe buy button -->
+      <stripe-buy-button
+        buy-button-id="buy_btn_1SuzEo4CwTcLtdnJ0Oke3Gm5"
+        publishable-key="pk_live_51SWZWW4CwTcLtdnJyRfEPIMQpnINcf0WYX5KFr3UkxJme5MGUWZMWe8H6hQWDkqVeMJzsAIqMm0YSGHSt8cY2ya500YuvxKdc7">
+      </stripe-buy-button>
+
+      <p style="font-size:12.5px; color:var(--muted); margin-top:6px;">
+        You’ll receive an emailed receipt after payment.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
     <footer>
       <div>© <span id="year"></span> AiT Chick • IT Services</div>
       <div>
@@ -462,5 +504,10 @@
       window.location.href = `mailto:tech@aitchick.com?subject=${subject}&body=${body}`;
     });
   </script>
+  
+  
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+  
 </body>
 </html>
